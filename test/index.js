@@ -105,7 +105,7 @@ describe("mask()", () => {
     it("should mask sensitive phrases with '*-*' style", () => {
         let sentence = "操，草泥马，心中有千万只草泥马奔腾而过，你只能在操场操练广播操或体操";
         let patterns = [
-            "草泥马",
+            "草泥马(逼)?",
             "!(一)?(头|只)草泥马",
             "操(尼玛|你妈)?",
             "!(体|广播)操",
@@ -118,12 +118,20 @@ describe("mask()", () => {
             result,
             "*，*泥*，心中有千万只草泥马奔腾而过，你只能在操场操练广播操或体操"
         );
+
+        sentence = "操，草泥马逼，心中有千万只草泥马奔腾而过，你只能在操场操练广播操或体操";
+        tokens = find(sentence, patterns);
+        result = mask(sentence, tokens, "*-*");
+        assert.strictEqual(
+            result,
+            "*，*泥马*，心中有千万只草泥马奔腾而过，你只能在操场操练广播操或体操"
+        );
     });
 
     it("should mask sensitive phrases with '-*-' style", () => {
         let sentence = "操，草泥马，心中有千万只草泥马奔腾而过，你只能在操场操练广播操或体操";
         let patterns = [
-            "草泥马",
+            "草泥马(逼)?",
             "!(一)?(头|只)草泥马",
             "操(尼玛|你妈)?",
             "!(体|广播)操",
@@ -135,6 +143,14 @@ describe("mask()", () => {
         assert.strictEqual(
             result,
             "*，草*马，心中有千万只草泥马奔腾而过，你只能在操场操练广播操或体操"
+        );
+
+        sentence = "操，草泥马逼，心中有千万只草泥马奔腾而过，你只能在操场操练广播操或体操";
+        tokens = find(sentence, patterns);
+        result = mask(sentence, tokens, "-*-");
+        assert.strictEqual(
+            result,
+            "*，草**逼，心中有千万只草泥马奔腾而过，你只能在操场操练广播操或体操"
         );
     });
 

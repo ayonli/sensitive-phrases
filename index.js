@@ -226,11 +226,10 @@ function mask(sentence, tokens, style = "*") {
                 break;
 
             case "*-*": {
-                let _length = Math.floor(length / 3);
-
-                if (_length === 0) { // use *- style
+                if (length < 3) { // use *- style
                     sentence = handleStarDashStyle(sentence, index, length);
                 } else {
+                    let _length = Math.round(length / 3);
                     sentence = sentence.slice(0, index)
                         + getMask(_length)
                         + sentence.substr(index + _length, length - _length * 2)
@@ -242,14 +241,14 @@ function mask(sentence, tokens, style = "*") {
             }
 
             case "-*-": {
-                let _length = Math.round(length / 3);
-
-                if (_length === 0) { // use -* style
+                if (length < 3) { // use -* style
                     sentence = handleHashStarStyle(sentence, index, length);
                 } else {
-                    sentence = sentence.slice(0, index + _length)
+                    let _length = Math.ceil(length / 3);
+                    let __length = (length - _length) / 2;
+                    sentence = sentence.slice(0, index + __length)
                         + getMask(_length)
-                        + sentence.slice(index + _length * 2);
+                        + sentence.slice(index + _length + __length);
                 }
 
                 break;
