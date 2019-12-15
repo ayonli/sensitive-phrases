@@ -59,7 +59,8 @@ assert.strictEqual(
 
 ## API
 
-Before list all the functions one by one, take a look at the type declarations:
+Before listing all the functions one by one, take a look at the type
+declarations:
 
 ```ts
 export type Token = { phrase: string; index: number; };
