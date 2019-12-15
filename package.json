@@ -1,0 +1,28 @@
+{
+  "name": "sensitive-phrases",
+  "version": "1.0.0",
+  "description": "Find and mask sensitive phrases in a sentence.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyurl/sensitive-phrases.git"
+  },
+  "keywords": [
+    "sensitive-phrases",
+    "sensitive-words",
+    "blacklist",
+    "regexp"
+  ],
+  "author": "Ayon Lee <i@hyurl.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hyurl/sensitive-phrases/issues"
+  },
+  "homepage": "https://github.com/hyurl/sensitive-phrases#readme",
+  "devDependencies": {
+    "mocha": "^6.2.2"
+  }
+}
